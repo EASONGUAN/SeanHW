@@ -1,0 +1,4 @@
+Please write the following leetcode question using Java:
+1. Two Sum
+217. Contains Duplicate
+412. Fizz Buzz
