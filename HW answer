@@ -1,0 +1,45 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+       for (int i1 = 0; i1 < nums.length; i1 ++ ) {
+           for (int i2 = i1 + 1; i2 < nums.length; i2 ++){
+               if (nums[i1] + nums[i2] == target){
+                   return new int[] { i1, i2 };
+               }
+           }
+       }
+       return null;
+    }
+}
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> hs = new HashSet<>();
+        for (int i = 0; i < nums.length; i ++) {
+            boolean b1 = hs.add(nums[i]);
+            if (!b1) {
+                return true;
+            }  
+        }
+        return false;
+    }
+}
+
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> out = new ArrayList<String>();
+        for (int i = 1; i <= n; i++){
+            Boolean d3 = i % 3 == 0;
+            Boolean d5 = i % 5 == 0;
+            if (d3 & d5){
+                out.add("FizzBuzz");
+            }else if (d3){
+                out.add("Fizz");
+            }else if (d5){
+                out.add("Buzz");
+            }else {
+                out.add(i + "");
+            }
+        }
+        return out;
+    }
+}
