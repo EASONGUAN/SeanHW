@@ -1,0 +1,30 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+    public static String[][] record(){
+        String[] James = new String[]{"/Users/sean/Downloads/Java project/james.jpeg","Small forward","Los Angeles Lakers","first place in the first round","four MVPs","four championships"};
+        String[] Durant = new String[]{"/Users/sean/Downloads/Java project/durant.jpeg","Small forward","Phoenix Suns","second in the first round","one MVPs","two championships"};
+        String[] Bryant = new String[]{"/Users/sean/Downloads/Java project/bryant.jpeg","Shooting guard", "Los Angeles Lakers", "13th in the first round", "1 MVP", "5 NBA championships"};
+        String[] Jordan = new String[]{"/Users/sean/Downloads/Java project/jordan.jpeg","Shooting guard", "Chicago Bulls", "3rd in the first round", "5 MVPs", "6 NBA championships"};
+        String[] Curry = new String[]{"/Users/sean/Downloads/Java project/curry.jpeg","Point guard", "Golden State Warriors", "7th in the first round", "2 MVPs", "4 NBA championships"};
+        String[][] result = new String[][]{James, Durant, Bryant, Jordan, Curry};
+        return result;
+    }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(1400,800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel panel = new JPanel();
+        for (int i = 0; i < record().length; i ++){
+            JLabel label = new JLabel();
+            System.out.println(record()[i][0]);
+            ImageIcon image = new ImageIcon(new ImageIcon(record()[i][0]).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            label.setIcon(image);
+            panel.add(label);
+        }
+        frame.add(panel);
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+}
