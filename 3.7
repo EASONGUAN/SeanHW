@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+    public static String[][] record(){
+        String[] James = new String[]{"/Users/sean/Downloads/Java project/james.jpeg","Small forward","Los Angeles Lakers","first place in the first round","four MVPs","four championships"};
+        String[] Durant = new String[]{"/Users/sean/Downloads/Java project/durant.jpeg","Small forward","Phoenix Suns","second in the first round","one MVPs","two championships"};
+        String[] Bryant = new String[]{"/Users/sean/Downloads/Java project/bryant.jpeg","Shooting guard", "Los Angeles Lakers", "13th in the first round", "1 MVP", "5 NBA championships"};
+        String[] Jordan = new String[]{"/Users/sean/Downloads/Java project/jordan.jpeg","Shooting guard", "Chicago Bulls", "3rd in the first round", "5 MVPs", "6 NBA championships"};
+        String[] Curry = new String[]{"/Users/sean/Downloads/Java project/curry.jpeg","Point guard", "Golden State Warriors", "7th in the first round", "2 MVPs", "4 NBA championships"};
+        String[][] result = new String[][]{James, Durant, Bryant, Jordan, Curry};
+        return result;
+    }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(1250,750);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        for (int i = 0; i < record().length; i ++){
+            JPanel photo = new JPanel();
+            JLabel label = new JLabel();
+            photo.setBackground(Color.PINK);
+            photo.setBounds(0, i * 150, 250, 150);
+            System.out.println(record()[i][0]);
+            ImageIcon image = new ImageIcon(new ImageIcon(record()[i][0]).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            label.setIcon(image);
+            photo.add(label);
+            frame.add(photo);
+            JPanel text = new JPanel();
+            text.setBackground(Color.PINK);
+            text.setBounds(1000, i * 150, 250, 150);
+            for (int i2 = 1; i2 < 6; i2++) {
+                JLabel tlabel = new JLabel();
+                tlabel.setText(record()[i][i2]);
+                System.out.println(record()[i][i2]);
+                tlabel.setForeground(Color.BLACK);
+                text.add(tlabel);
+            }
+            frame.add(text);
+
+        }
+
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+}
