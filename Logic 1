@@ -1,0 +1,23 @@
+public class Main extends JFrame implements ActionListener{
+
+	Button startGameButton;
+	
+	public Main() {
+		setupStartScreen()
+	}
+
+	public void setupGameScreen(){
+		// YOUR LOGIC
+	}
+
+	public void setupStartScreen(){
+		//add label
+		//add a button
+	}
+
+	public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == startGameButton){
+            setupGameScreen();
+        }
+    }
+}
