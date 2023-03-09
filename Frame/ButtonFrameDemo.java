@@ -1,3 +1,5 @@
+package Actions;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,7 @@ public class ButtonFrameDemo extends JFrame implements ActionListener {
     JButton button1;
     JLabel label;
 
-    ButtonFrameDemo(){
+    ButtonFrameDemo() {
         button = new JButton();
         button.setBounds(200, 200, 200, 20);
         button.addActionListener(this);
@@ -17,7 +19,7 @@ public class ButtonFrameDemo extends JFrame implements ActionListener {
         button1 = new JButton();
         button1.setBounds(200, 300, 200, 20);
         button1.addActionListener(this);
-        button1.setText("does nothing");
+        button1.setText("Clear All");
 
         label = new JLabel();
         label.setText("HELLO");
@@ -37,11 +39,13 @@ public class ButtonFrameDemo extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        System.out.println(e.getSource());
-
-        if (e.getSource() == button || e.getSource() == button1){
+        if (e.getSource() == button){
             label.setForeground(Color.RED);
-            System.out.println("AAAAAA");
+        }
+        if (e.getSource() == button1){
+            this.getContentPane().removeAll();
+            this.getContentPane().repaint();
+            //SetGameBackground()
         }
     }
 
