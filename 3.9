@@ -1,0 +1,105 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main extends JFrame implements ActionListener {
+    JButton button;
+    JLabel l;
+    JTextField textField;
+    JLabel mention;
+    JLabel printhere;
+    public static String[][] record(){
+        String[] James = new String[]{"/Users/sean/Downloads/Java project/james.jpeg","Small forward","Los Angeles Lakers","first place in the first round","four MVPs","four championships"};
+        String[] Durant = new String[]{"/Users/sean/Downloads/Java project/durant.jpeg","Small forward","Phoenix Suns","second in the first round","one MVPs","two championships"};
+        String[] Bryant = new String[]{"/Users/sean/Downloads/Java project/bryant.jpeg","Shooting guard", "Los Angeles Lakers", "13th in the first round", "1 MVP", "5 NBA championships"};
+        String[] Jordan = new String[]{"/Users/sean/Downloads/Java project/jordan.jpeg","Shooting guard", "Chicago Bulls", "3rd in the first round", "5 MVPs", "6 NBA championships"};
+        String[] Curry = new String[]{"/Users/sean/Downloads/Java project/curry.jpeg","Point guard", "Golden State Warriors", "7th in the first round", "2 MVPs", "4 NBA championships"};
+        String[][] result = new String[][]{James, Durant, Bryant, Jordan, Curry};
+        return result;
+    }
+    public void Game(String Name){
+        JLabel lName = new JLabel();
+        lName.setText(Name);
+        lName.setForeground(Color.BLACK);
+        lName.setBounds(500,0,250,250);
+        this.add(lName);
+        for (int i = 0; i < record().length; i ++){
+            JPanel photo = new JPanel();
+            JLabel label = new JLabel();
+            photo.setBackground(Color.PINK);
+            photo.setBounds(0, i * 150, 250, 150);
+            ImageIcon image = new ImageIcon(new ImageIcon(record()[i][0]).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            label.setIcon(image);
+            photo.add(label);
+            this.add(photo);
+            JPanel text = new JPanel();
+            text.setBackground(Color.PINK);
+            text.setBounds(750, i * 150, 250, 150);
+            for (int i2 = 1; i2 < 6; i2++) {
+                JLabel tlabel = new JLabel();
+                tlabel.setText(record()[i][i2]);
+                tlabel.setForeground(Color.BLACK);
+                text.add(tlabel);
+            }
+            this.add(text);
+        }
+    }
+    public void FrontPage(){
+        this.button = new JButton();
+        this.l = new JLabel();
+        this.textField = new JTextField();
+        this.printhere = new JLabel();
+        button.setText("Start Game");
+        button.setBounds(350, 460, 300,100);
+        button.addActionListener(this);
+        l.setText("Basketball Game");
+        l.setFont(new Font("Courier", Font.BOLD,70));
+        l.setBounds(170, 40, 700,300);
+        l.setForeground(Color.BLACK);
+        printhere.setText("Please input your name");
+        printhere.setFont(new Font("Courier", Font.BOLD,20));
+        printhere.setBounds(70, 320, 450,60);
+        printhere.setForeground(Color.BLACK);
+        textField.setBounds(550, 320, 400, 60);
+        textField.setBackground(Color.BLACK);
+        textField.setForeground(Color.GREEN);
+        this.add(button);
+        this.add(l);
+        this.add(textField);
+        this.add(printhere);
+    }
+    public Main() {
+        this.setSize(1000,750);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrontPage();
+        this.setLayout(null);
+        this.setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button) {
+            if (textField.getText().isEmpty()){
+                mention = new JLabel();
+                mention.setText("Please input your name.");
+                mention.setForeground(Color.PINK);
+                mention.setBounds(0,500,250,250);
+                this.add(mention);
+                setVisible(true);
+                printhere.setForeground(Color.RED);
+                printhere.setBounds(50, 320, 550,60);
+                printhere.setFont(new Font("Courier", Font.BOLD,35));
+                System.out.println("False");
+            }else{
+                this.getContentPane().removeAll();
+                this.getContentPane().repaint();
+                Game(textField.getText());
+                this.setLayout(null);
+                this.setVisible(true);
+                System.out.println();
+            }
+        }
+    }
+    public static void main(String[] arg){
+        new Main();
+    }
+}
