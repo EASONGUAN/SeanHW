@@ -1,0 +1,237 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+
+public class Main extends JFrame implements ActionListener {
+    JButton button;
+    JLabel l;
+    JTextField textField;
+    JLabel mention;
+    JLabel printhere;
+    JButton submit;
+    JComboBox C0;
+    JLabel W0;
+    JComboBox C1;
+    JLabel W1;
+    JComboBox C2;
+    JLabel W2;
+    JComboBox C3;
+    JLabel W3;
+    JComboBox C4;
+    JLabel W4;
+    HashMap<Integer,String> transItoL;
+    HashMap<String,Integer> transLtoI;
+    ArrayList<Integer> arr;
+    JLabel rule;
+    public static String[][] record(){
+        String[] James = new String[]{"/Users/sean/Downloads/Java project/james.jpeg","Small forward","Los Angeles Lakers","first place in the first round","four MVPs","four championships"};
+        String[] Durant = new String[]{"/Users/sean/Downloads/Java project/durant.jpeg","Small forward","Phoenix Suns","second in the first round","one MVPs","two championships"};
+        String[] Bryant = new String[]{"/Users/sean/Downloads/Java project/bryant.jpeg","Shooting guard", "Los Angeles Lakers", "13th in the first round", "1 MVP", "5 NBA championships"};
+        String[] Jordan = new String[]{"/Users/sean/Downloads/Java project/jordan.jpeg","Shooting guard", "Chicago Bulls", "3rd in the first round", "5 MVPs", "6 NBA championships"};
+        String[] Curry = new String[]{"/Users/sean/Downloads/Java project/curry.jpeg","Point guard", "Golden State Warriors", "7th in the first round", "2 MVPs", "4 NBA championships"};
+        String[][] result = new String[][]{James, Durant, Bryant, Jordan, Curry};
+        return result;
+    }
+    public void Game(String Name){
+        rule = new JLabel("<html><body><p align=\"center\">Please choose the right letter which describes the basketball players on the left.<br/</body></html>");
+        rule.setFont(new Font("Courier", Font.BOLD,25));
+        rule.setBounds(420, 180, 300,320);
+        this.add(rule);
+        submit = new JButton();
+        submit.setText("Submit");
+        submit.setBounds(450, 500, 200,100);
+        submit.addActionListener(this);
+        this.add(submit);
+        transItoL = new HashMap<Integer,String>();
+        transLtoI = new HashMap<String,Integer>();
+        transItoL.put(0,"A");
+        transItoL.put(1,"B");
+        transItoL.put(2,"C");
+        transItoL.put(3,"D");
+        transItoL.put(4,"E");
+        transLtoI.put("A",0);
+        transLtoI.put("B",1);
+        transLtoI.put("C",2);
+        transLtoI.put("D",3);
+        transLtoI.put("E",4);
+        arr =  new ArrayList<>(Arrays.asList(0,1,2,3,4));
+        Collections.shuffle(arr);
+        JLabel lName = new JLabel();
+        lName.setText("Player:" + Name);
+        lName.setForeground(Color.BLACK);
+        lName.setBounds(450,150,250,50);
+        lName.setFont(new Font("Courier", Font.BOLD,40));
+        this.add(lName);
+        for (int i = 0; i < record().length; i ++){
+            JPanel photo = new JPanel();
+            JLabel label = new JLabel();
+            photo.setBackground(Color.PINK);
+            photo.setBounds(0, i * 150, 250, 150);
+            ImageIcon image = new ImageIcon(new ImageIcon(record()[i][0]).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            label.setIcon(image);
+            photo.add(label);
+            this.add(photo);
+            JPanel text = new JPanel();
+            text.setBackground(Color.PINK);
+            text.setBounds(750, i * 150, 250, 150);
+            JLabel letter = new JLabel();
+            letter.setText(transItoL.get(i));
+            letter.setForeground(Color.BLACK);
+            text.add(letter);
+            for (int i2 = 1; i2 < 6; i2++) {
+                JLabel tlabel = new JLabel();
+                tlabel.setText(record()[arr.get(i)][i2]);
+                tlabel.setForeground(Color.BLACK);
+                text.add(tlabel);
+            }
+            this.add(text);
+        }
+        String[] choice = {"A", "B", "C", "D", "E"};
+        C0 = new JComboBox(choice);
+        C0.addActionListener(this);
+        C0.setBounds(250, 30, 100,50);
+        this.add(C0);
+        W0 = new JLabel();
+        W0.setBounds(350, 30, 100,50);
+        W0.setForeground(Color.RED);
+        this.add(W0);
+        C1 = new JComboBox(choice);
+        C1.addActionListener(this);
+        C1.setBounds(250, 180, 100,50);
+        this.add(C1);
+        W1 = new JLabel();
+        W1.setBounds(350, 180, 100,50);
+        W1.setForeground(Color.RED);
+        this.add(W1);
+        C2 = new JComboBox(choice);
+        C2.addActionListener(this);
+        C2.setBounds(250, 330, 100,50);
+        this.add(C2);
+        W2 = new JLabel();
+        W2.setBounds(350, 330, 100,50);
+        W2.setForeground(Color.RED);
+        this.add(W2);
+        C3 = new JComboBox(choice);
+        C3.addActionListener(this);
+        C3.setBounds(250, 480, 100,50);
+        this.add(C3);
+        W3 = new JLabel();
+        W3.setBounds(350, 480, 100,50);
+        W3.setForeground(Color.RED);
+        this.add(W3);
+        C4 = new JComboBox(choice);
+        C4.addActionListener(this);
+        C4.setBounds(250, 630, 100,50);
+        this.add(C4);
+        W4 = new JLabel();
+        W4.setBounds(350, 630, 100,50);
+        W4.setForeground(Color.RED);
+        this.add(W4);
+    }
+    public void FrontPage(){
+        this.button = new JButton();
+        this.l = new JLabel();
+        this.textField = new JTextField();
+        this.printhere = new JLabel();
+        button.setText("Start Game");
+        button.setBounds(350, 460, 300,100);
+        button.addActionListener(this);
+        l.setText("Basketball Game");
+        l.setFont(new Font("Courier", Font.BOLD,70));
+        l.setBounds(170, 40, 700,300);
+        l.setForeground(Color.BLACK);
+        printhere.setText("Please input your name");
+        printhere.setFont(new Font("Courier", Font.BOLD,20));
+        printhere.setBounds(70, 320, 450,60);
+        printhere.setForeground(Color.BLACK);
+        textField.setBounds(550, 320, 400, 60);
+        textField.setBackground(Color.BLACK);
+        textField.setForeground(Color.GREEN);
+        this.add(button);
+        this.add(l);
+        this.add(textField);
+        this.add(printhere);
+    }
+    public Main() {
+        this.setSize(1000,750);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrontPage();
+        this.setLayout(null);
+        this.setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button) {
+            if (textField.getText().isEmpty()){
+                mention = new JLabel();
+                mention.setText("Please input your name.");
+                mention.setForeground(Color.PINK);
+                mention.setBounds(0,500,250,250);
+                this.add(mention);
+                setVisible(true);
+                printhere.setForeground(Color.RED);
+                printhere.setBounds(50, 320, 550,60);
+                printhere.setFont(new Font("Courier", Font.BOLD,35));
+                System.out.println("False");
+            }else{
+                this.getContentPane().removeAll();
+                this.getContentPane().repaint();
+                Game(textField.getText());
+                this.setLayout(null);
+                this.setVisible(true);
+                System.out.println();
+            }
+        }
+        if(e.getSource() == submit){
+            int count = 0;
+            if (arr.get(transLtoI.get(C0.getSelectedItem())) == 0){
+                count += 20;
+            }else{
+                W0.setText(check(0));
+            }
+
+            if (arr.get(transLtoI.get(C1.getSelectedItem())) == 1){
+                count += 20;
+            }else{
+                W1.setText(check(1));
+            }
+
+            if (arr.get(transLtoI.get(C2.getSelectedItem())) == 2){
+                count += 20;
+            }else{
+                W2.setText(check(2));
+            }
+
+            if (arr.get(transLtoI.get(C3.getSelectedItem())) == 3){
+                count += 20;
+            }else{
+                W3.setText(check(3));
+            }
+
+            if (arr.get(transLtoI.get(C4.getSelectedItem())) == 4){
+                count += 20;
+            }else{
+                W4.setText(check(4));
+            }
+            System.out.println(count);
+            this.getContentPane().remove(submit);
+            rule.setText("Your score is " + Integer.toString(count));
+        }
+
+    }
+    public String check(Integer ans){
+        for (int i = 0; i <= 4; i++){
+            if (arr.get(i) == ans){
+                return transItoL.get(i);
+            }
+        }
+        return null;
+    }
+    public static void main(String[] arg){
+        new Main();
+    }
+}
